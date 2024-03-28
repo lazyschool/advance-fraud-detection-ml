@@ -1,124 +1,106 @@
 {
+  "modelTopology": {
     "class_name": "Sequential",
     "config": {
-      "name": "sequential_model",
       "layers": [
         {
-          "class_name": "Dense",
+          "class_name": "LSTM",
           "config": {
-            "units": 50,
-            "activation": "relu",
-            "name": "layer_1",
-            "use_bias": true,
-            "kernel_initializer": {
-              "class_name": "VarianceScaling",
-              "config": {
-                "scale": 1,
-                "mode": "fan_avg",
-                "distribution": "normal",
-                "seed": null
-              }
-            },
-            "bias_initializer": {
-              "class_name": "Zeros",
-              "config": {}
-            },
-            "trainable": true
+            "units": 128,
+            "input_shape": [10, 64], 
+            "return_sequences": true
+          }
+        },
+        {
+          "class_name": "LSTM",
+          "config": {
+            "units": 64,
+            "return_sequences": false
           }
         },
         {
           "class_name": "Dense",
           "config": {
-            "units": 100,
-            "activation": "relu",
-            "name": "layer_2",
-            "use_bias": true,
-            "kernel_initializer": {
-              "class_name": "VarianceScaling",
-              "config": {
-                "scale": 1,
-                "mode": "fan_avg",
-                "distribution": "normal",
-                "seed": null
-              }
-            },
-            "bias_initializer": {
-              "class_name": "Zeros",
-              "config": {}
-            },
-            "trainable": true
+            "units": 32,
+            "activation": "relu"
           }
         },
         {
           "class_name": "Dense",
           "config": {
-            "units": 50,
-            "activation": "relu",
-            "name": "layer_3",
-            "use_bias": true,
-            "kernel_initializer": {
-              "class_name": "VarianceScaling",
-              "config": {
-                "scale": 1,
-                "mode": "fan_avg",
-                "distribution": "normal",
-                "seed": null
-              }
-            },
-            "bias_initializer": {
-              "class_name": "Zeros",
-              "config": {}
-            },
-            "trainable": true
-          }
-        },
-        {
-          "class_name": "Dense",
-          "config": {
-            "units": 25,
-            "activation": "tanh",
-            "name": "layer_4",
-            "use_bias": true,
-            "kernel_initializer": {
-              "class_name": "VarianceScaling",
-              "config": {
-                "scale": 1,
-                "mode": "fan_avg",
-                "distribution": "normal",
-                "seed": null
-              }
-            },
-            "bias_initializer": {
-              "class_name": "Zeros",
-              "config": {}
-            },
-            "trainable": true
-          }
-        },
-        {
-          "class_name": "Dense",
-          "config": {
-            "units": 1,
-            "activation": "linear",
-            "name": "output_layer",
-            "use_bias": true,
-            "kernel_initializer": {
-              "class_name": "VarianceScaling",
-              "config": {
-                "scale": 1,
-                "mode": "fan_avg",
-                "distribution": "normal",
-                "seed": null
-              }
-            },
-            "bias_initializer": {
-              "class_name": "Zeros",
-              "config": {}
-            },
-            "trainable": true
+            "units": 1, 
+            "activation": "linear"
           }
         }
       ]
     }
-  }
-  
+  },
+  "trainingConfig": {
+    "optimizer_config": {
+      "class_name": "Adam",
+      "config": {
+        "learning_rate": 0.001
+      }
+    },
+    "loss": "mean_squared_error",
+    "metrics": ["accuracy"]
+  },
+  "weightsManifest": [
+    {
+      "paths": ["model-weights.bin"],
+      "weights": [
+    
+        {
+          "name": "lstm_1/kernel",
+          "shape": [64, 512],
+          "dtype": "float32"
+        },
+        {
+          "name": "lstm_1/recurrent_kernel",
+          "shape": [128, 512],
+          "dtype": "float32"
+        },
+        {
+          "name": "lstm_1/bias",
+          "shape": [512],
+          "dtype": "float32"
+        },
+        {
+          "name": "lstm_2/kernel",
+          "shape": [128, 256],
+          "dtype": "float32"
+        },
+        {
+          "name": "lstm_2/recurrent_kernel",
+          "shape": [64, 256],
+          "dtype": "float32"
+        },
+        {
+          "name": "lstm_2/bias",
+          "shape": [256],
+          "dtype": "float32"
+        },
+        {
+          "name": "dense_1/kernel",
+          "shape": [64, 32],
+          "dtype": "float32"
+        },
+        {
+          "name": "dense_1/bias",
+          "shape": [32],
+          "dtype": "float32"
+        },
+        {
+          "name": "dense_2/kernel",
+          "shape": [32, 1],
+          "dtype": "float32"
+        },
+        {
+          "name": "dense_2/bias",
+          "shape": [1],
+          "dtype": "float32"
+        }
+      ]
+    }
+  ]
+}

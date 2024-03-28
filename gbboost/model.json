@@ -1,124 +1,32 @@
 {
-    "class_name": "Sequential",
-    "config": {
-      "name": "sequential_model",
-      "layers": [
-        {
-          "class_name": "Dense",
-          "config": {
-            "units": 50,
-            "activation": "relu",
-            "name": "layer_1",
-            "use_bias": true,
-            "kernel_initializer": {
-              "class_name": "VarianceScaling",
-              "config": {
-                "scale": 1,
-                "mode": "fan_avg",
-                "distribution": "normal",
-                "seed": null
-              }
-            },
-            "bias_initializer": {
-              "class_name": "Zeros",
-              "config": {}
-            },
-            "trainable": true
+    "name": "gbtree",
+    "parameters": {
+      "learning_rate": 0.1,
+      "max_depth": 3,
+      "objective": "binary:logistic"
+    },
+    "trees": [
+      {
+        "index": 0,
+        "depth": 2,
+        "splits": [
+          {
+            "split_feature": 1,
+            "threshold": 0.123,
+            "decision_type": "<=",
+            "yes": 1,
+            "no": 2
+          },
+          {
+            "split_feature": 2,
+            "threshold": 0.345,
+            "decision_type": "<=",
+            "yes": 3,
+            "no": 4
           }
-        },
-        {
-          "class_name": "Dense",
-          "config": {
-            "units": 100,
-            "activation": "relu",
-            "name": "layer_2",
-            "use_bias": true,
-            "kernel_initializer": {
-              "class_name": "VarianceScaling",
-              "config": {
-                "scale": 1,
-                "mode": "fan_avg",
-                "distribution": "normal",
-                "seed": null
-              }
-            },
-            "bias_initializer": {
-              "class_name": "Zeros",
-              "config": {}
-            },
-            "trainable": true
-          }
-        },
-        {
-          "class_name": "Dense",
-          "config": {
-            "units": 50,
-            "activation": "relu",
-            "name": "layer_3",
-            "use_bias": true,
-            "kernel_initializer": {
-              "class_name": "VarianceScaling",
-              "config": {
-                "scale": 1,
-                "mode": "fan_avg",
-                "distribution": "normal",
-                "seed": null
-              }
-            },
-            "bias_initializer": {
-              "class_name": "Zeros",
-              "config": {}
-            },
-            "trainable": true
-          }
-        },
-        {
-          "class_name": "Dense",
-          "config": {
-            "units": 25,
-            "activation": "tanh",
-            "name": "layer_4",
-            "use_bias": true,
-            "kernel_initializer": {
-              "class_name": "VarianceScaling",
-              "config": {
-                "scale": 1,
-                "mode": "fan_avg",
-                "distribution": "normal",
-                "seed": null
-              }
-            },
-            "bias_initializer": {
-              "class_name": "Zeros",
-              "config": {}
-            },
-            "trainable": true
-          }
-        },
-        {
-          "class_name": "Dense",
-          "config": {
-            "units": 1,
-            "activation": "linear",
-            "name": "output_layer",
-            "use_bias": true,
-            "kernel_initializer": {
-              "class_name": "VarianceScaling",
-              "config": {
-                "scale": 1,
-                "mode": "fan_avg",
-                "distribution": "normal",
-                "seed": null
-              }
-            },
-            "bias_initializer": {
-              "class_name": "Zeros",
-              "config": {}
-            },
-            "trainable": true
-          }
-        }
-      ]
-    }
+        ],
+        "leaf_values": [0.5, 0.8, -0.3]
+      }
+    ]
   }
   
